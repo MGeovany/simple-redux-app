@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavbarA } from './NavbarA'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
+import { Formik, Form } from 'formik'
 
 const UserList = () => {
   const { list: users } = useSelector(state => state.users)
   const dispatch = useDispatch()
 
   const [show, setShow] = useState(false)
-  const [name, setName] = useState('mgeovany.dev')
+  const [name, setName] = useState('')
 
   const handleClose = e => {
     e.preventDefault()
@@ -60,19 +61,25 @@ const UserList = () => {
           <Modal.Title>Bienvenido</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form action='' onSubmit={handleClose} className='formulario'>
-            <div>
-              <label htmlFor='nombre'>Nombre</label>
-              <input
-                type='text'
-                name='nombre'
-                placeholder='Nombre'
-                id='nombre'
-                value={name}
-                onChange={handleInputName}
-              />
-            </div>
-          </form>
+          <Formik
+            initialValues={{
+              firstName: 'mgeovany.dev'
+            }}
+          >
+            <Form action='' onSubmit={handleClose} className='formulario'>
+              <div>
+                <label htmlFor='nombre'>Nombre</label>
+                <input
+                  type='text'
+                  name='nombre'
+                  placeholder='Nombre'
+                  id='nombre'
+                  value={name}
+                  onChange={handleInputName}
+                />
+              </div>
+            </Form>
+          </Formik>
         </Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' type='submit' onClick={handleClose}>
