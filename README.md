@@ -10,7 +10,6 @@
 
 - [Axios](https://https://axios-http.com/.com/)
 
--[API: Pexels](https://www.pexels.com/es-es/)
 
 ## 🚀 Get Started
 
