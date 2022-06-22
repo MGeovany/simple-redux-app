@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import { Link } from 'react-router-dom'
+
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addGuest } from './store/slices/guests'
+import Button from 'react-bootstrap/Button'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <div className='App'>
+        <span style={{ padding: '1.5rem 0 ' }}>Hello World!</span>
+        <span>🐜</span>
+        <Link to='/home'>
+          <Button
+            type='button'
+            className='btn btn-primary'
+            variant='light'
+            style={{ color: '#333', fontweight: 'bold' }}
+          >
+            Go Inside
+          </Button>
+        </Link>
+      </div>
+    </>
+  )
 }
 
-export default App;
+export default App
