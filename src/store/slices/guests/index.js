@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const guestSlice = createSlice({
   name: 'guests',
   initialState: {
-    value: 'M Geovany'
+    value: null
   },
   reducers: {
     addGuest: (state, action) => {

@@ -8,31 +8,23 @@ import { Formik, Form } from 'formik'
 
 const UserList = () => {
   const { list: users } = useSelector(state => state.users)
+  const guests = useSelector(state => state.guests.value)
   const dispatch = useDispatch()
-
-  const [show, setShow] = useState(false)
-  const [name, setName] = useState('')
-
-  const handleClose = e => {
-    e.preventDefault()
-    setShow(false)
-  }
-
-  const handleInputName = e => {
-    setName(e.target.value)
-  }
-
-  const handleShow = () => setShow(true)
 
   useEffect(() => {
     dispatch(fetchAllUsers())
-    handleShow()
   }, [dispatch])
+
   return (
     <>
       <NavbarA />
       <div className='container '>
-        <h1>Bienvenido {name}</h1>
+        <h1>
+          Bienvenido{' '}
+          <strong style={{ fontStyle: 'italic', color: '#3bc7eb' }}>
+            {guests}
+          </strong>
+        </h1>
       </div>
       <div className='container mt-4'>
         <div className='row'>
@@ -49,47 +41,6 @@ const UserList = () => {
           ))}
         </div>
       </div>
-
-      <Modal
-        size='lg'
-        aria-labelledby='contained-modal-title-vcenter'
-        centered
-        show={show}
-        onHide={handleClose}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Bienvenido</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Formik
-            initialValues={{
-              firstName: 'mgeovany.dev'
-            }}
-          >
-            <Form action='' onSubmit={handleClose} className='formulario'>
-              <div>
-                <label htmlFor='nombre'>Nombre</label>
-                <input
-                  type='text'
-                  name='nombre'
-                  placeholder='Nombre'
-                  id='nombre'
-                  value={name}
-                  onChange={handleInputName}
-                />
-              </div>
-            </Form>
-          </Formik>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant='secondary' type='submit' onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant='primary' onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </>
   )
 }
